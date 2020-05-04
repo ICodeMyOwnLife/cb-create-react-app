@@ -184,7 +184,7 @@ module.exports = function(webpackEnv) {
             // changing JS code would still trigger a refresh.
           ]
         : paths.appIndexJs,
-    external: {
+    externals: {
       react: 'React',
       'react-dom': 'ReactDOM',
     },
