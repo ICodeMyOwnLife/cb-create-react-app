@@ -1,6 +1,6 @@
 {
   "name": "cb-react-scripts-micro-frontend-container",
-  "version": "3.4.1-1",
+  "version": "3.4.1-2",
   "description": "Configuration for React Micro-Frontend container.",
   "repository": {
     "type": "git",
@@ -38,7 +38,7 @@
     "camelcase": "^5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "cb-react-micro-frontend-core": "^0.0.5",
-    "cb-react-micro-frontend-server": "^0.0.8",
+    "cb-react-micro-frontend-server": "^0.0.9",
     "css-loader": "3.5.3",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
