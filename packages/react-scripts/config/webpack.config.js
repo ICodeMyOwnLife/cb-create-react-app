@@ -185,6 +185,7 @@ module.exports = function(webpackEnv) {
     externals: {
       react: 'React',
       'react-dom': 'ReactDOM',
+      'react-router-dom': 'ReactRouterDOM',
     },
     output: {
       // The build folder.
