@@ -40,6 +40,8 @@ const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
 
+const { MFC_EXTENSION } = require('cb-react-micro-frontend-core');
+
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
@@ -190,14 +192,14 @@ module.exports = function(webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction
-        ? 'static/js/[name].[contenthash:8].js'
-        : isEnvDevelopment && 'static/js/bundle.js',
+        ? `static/js/[name].[contenthash:8].${MFC_EXTENSION}.js`
+        : isEnvDevelopment && `static/js/bundle.${MFC_EXTENSION}.js`,
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction
-        ? 'static/js/[name].[contenthash:8].chunk.js'
-        : isEnvDevelopment && 'static/js/[name].chunk.js',
+        ? `static/js/[name].[contenthash:8].chunk.${MFC_EXTENSION}.js`
+        : isEnvDevelopment && `static/js/[name].chunk.${MFC_EXTENSION}.js`,
       // webpack uses `publicPath` to determine where the app is being served from.
       // It requires a trailing slash, or the file assets will get an incorrect path.
       // We inferred the "public path" (such as / or /my-project) from homepage.
@@ -388,7 +390,7 @@ module.exports = function(webpackEnv) {
               loader: require.resolve('url-loader'),
               options: {
                 limit: imageInlineSizeLimit,
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: `static/media/[name].[hash:8].${MFC_EXTENSION}.[ext]`,
               },
             },
             // Process application JS with Babel.
@@ -498,7 +500,9 @@ module.exports = function(webpackEnv) {
               exclude: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
-                sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+                sourceMap: isEnvProduction
+                  ? shouldUseSourceMap
+                  : isEnvDevelopment,
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -512,7 +516,9 @@ module.exports = function(webpackEnv) {
               test: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
-                sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+                sourceMap: isEnvProduction
+                  ? shouldUseSourceMap
+                  : isEnvDevelopment,
                 modules: {
                   getLocalIdent: getCSSModuleLocalIdent,
                 },
@@ -527,7 +533,9 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
-                  sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+                  sourceMap: isEnvProduction
+                    ? shouldUseSourceMap
+                    : isEnvDevelopment,
                 },
                 'sass-loader'
               ),
@@ -544,7 +552,9 @@ module.exports = function(webpackEnv) {
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
-                  sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
+                  sourceMap: isEnvProduction
+                    ? shouldUseSourceMap
+                    : isEnvDevelopment,
                   modules: {
                     getLocalIdent: getCSSModuleLocalIdent,
                   },
@@ -565,7 +575,7 @@ module.exports = function(webpackEnv) {
               // by webpacks internal loaders.
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: `static/media/[name].[hash:8].${MFC_EXTENSION}.[ext]`,
               },
             },
             // ** STOP ** Are you adding a new loader?
@@ -649,8 +659,8 @@ module.exports = function(webpackEnv) {
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
-          filename: 'static/css/[name].[contenthash:8].css',
-          chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+          filename: `static/css/[name].[contenthash:8].${MFC_EXTENSION}.css`,
+          chunkFilename: `static/css/[name].[contenthash:8].${MFC_EXTENSION}.chunk.css`,
         }),
       // Generate an asset manifest file with the following content:
       // - "files" key: Mapping of all asset filenames to their corresponding

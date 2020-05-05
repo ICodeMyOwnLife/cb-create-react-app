@@ -1,18 +1,15 @@
 {
-  "name": "react-scripts",
+  "name": "cb-react-scripts-micro-frontend-container",
   "version": "3.4.1",
-  "description": "Configuration and scripts for Create React App.",
+  "description": "Configuration for React Micro-Frontend container.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
+    "url": "https://github.com/ICodeMyOwnLife/cb-create-react-app.git",
     "directory": "packages/react-scripts"
   },
   "license": "MIT",
   "engines": {
     "node": ">=10"
-  },
-  "bugs": {
-    "url": "https://github.com/facebook/create-react-app/issues"
   },
   "files": [
     "bin",
@@ -40,6 +37,7 @@
     "babel-preset-react-app": "^9.1.2",
     "camelcase": "^5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "cb-react-micro-frontend-core": "^0.0.5",
     "css-loader": "3.5.3",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
