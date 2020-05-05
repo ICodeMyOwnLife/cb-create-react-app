@@ -184,6 +184,10 @@ module.exports = function(webpackEnv) {
             // changing JS code would still trigger a refresh.
           ]
         : paths.appIndexJs,
+    external: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
     output: {
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
