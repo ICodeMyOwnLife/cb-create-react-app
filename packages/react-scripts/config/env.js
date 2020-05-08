@@ -8,9 +8,12 @@
 // @remove-on-eject-end
 'use strict';
 
+const ENV = process.env.ENV || 'production';
+
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const appEnv = require(`sp-ops-env/${ENV}`).env;
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -98,6 +101,7 @@ function getClientEnvironment(publicUrl) {
         // which is why it's disabled by default.
         // It is defined here so it is available in the webpackHotDevClient.
         FAST_REFRESH: process.env.FAST_REFRESH || false,
+        ...appEnv,
       }
     );
   // Stringify all values so we can feed into webpack DefinePlugin

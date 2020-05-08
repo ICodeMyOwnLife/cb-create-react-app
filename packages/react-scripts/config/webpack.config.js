@@ -183,6 +183,19 @@ module.exports = function (webpackEnv) {
             // changing JS code would still trigger a refresh.
           ]
         : paths.appIndexJs,
+    externals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+      'react-router-dom': 'ReactRouterDOM',
+      'sp-datetime-utils': 'SpDateTime',
+      'sp-ops-react-ui': 'SpOpsUi',
+      '@material-ui/core/styles': 'SpOpsUi',
+      '@material-ui/core/Collapse': ['SpOpsUi', 'Collapse'],
+      '@material-ui/core/Slide': ['SpOpsUi', 'Slide'],
+      '@material-ui/core/Snackbar': ['SpOpsUi', 'Snackbar'],
+      '@material-ui/core/SnackbarContent': ['SpOpsUi', 'SnackbarContent'],
+      '@material-ui/core/SvgIcon': ['SpOpsUi', 'SvgIcon'],
+    },
     output: {
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
