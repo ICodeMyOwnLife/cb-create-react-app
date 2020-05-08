@@ -16,7 +16,6 @@ const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 const paths = require('./paths');
 const getHttpsConfig = require('./getHttpsConfig');
-const mfcProxyRouter = require('cb-react-micro-frontend-server').mfcProxyRouter;
 
 const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
@@ -118,8 +117,6 @@ module.exports = function(proxy, allowedHost) {
       app.use(evalSourceMapMiddleware(server));
       // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware());
-      // This forwards asset requests to micro-frontend container or child based on some checks.
-      app.use(mfcProxyRouter);
 
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
