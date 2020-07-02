@@ -7,6 +7,9 @@
  */
 // @remove-on-eject-end
 'use strict';
+console.log('cwd', process.cwd());
+console.log('process.env.ENV', process.env.ENV);
+console.log('process.env', JSON.stringify(process.env, null, 2));
 
 const ENV = process.env.ENV || 'production';
 
