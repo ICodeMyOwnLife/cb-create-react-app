@@ -1,15 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import reportWebVitals from './reportWebVitals';
+import {
+  MicroFrontendContainer,
+  MicroFrontendRouteInfo,
+} from 'sp-ops-micro-frontend';
+import * as serviceWorker from 'serviceWorker';
+import reportWebVitals from 'reportWebVitals';
+import routes from 'routes';
+
+let mockedRoutes = routes;
+
+if (process.env.NODE_ENV === 'development') {
+  const overrideRoutes = JSON.parse(
+    localStorage.getItem('hosts') || '[]',
+  ) as MicroFrontendRouteInfo[];
+  mockedRoutes = routes.map(({ host, name, ...rest }) => ({
+    ...rest,
+    name,
+    host: overrideRoutes.find(r => r.name === name)?.host ?? host,
+  }));
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <MicroFrontendContainer routes={mockedRoutes} />,
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
