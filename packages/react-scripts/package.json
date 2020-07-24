@@ -1,12 +1,6 @@
 {
   "name": "sp-react-scripts-micro-frontend-container",
-  "version": "3.4.1-6",
-  "description": "Configuration for SenPay Operation Tool Micro-Frontend container.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ICodeMyOwnLife/cb-create-react-app.git",
-    "directory": "packages/react-scripts"
-  },
+  "version": "3.4.1-7",
   "license": "MIT",
   "engines": {
     "node": "^10.12.0 || >=12.0.0"
